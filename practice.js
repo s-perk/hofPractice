@@ -247,11 +247,26 @@ var countMessagesPerUser = function(tweets) {
 // TIP: use an array as your accumulator - don't push to an external array!
 var ninetiesKid = function (movies) {
 
+  return _.reduce(movies, function (memo, item) {
+    releaseYear = item['releaseYear'];
+    if ((releaseYear <= 2000) && (releaseYear >= 1990)) {
+      memo.push(item.title);
+    }
+    return memo;
+  }, []);
 };
 
 // return an boolean stating if there exists a movie with a shorter
 // runtime than your time limit.
 // timeLimit is an integer representing a number of minutes.
 var movieNight = function (movies, timeLimit) {
-
+  return _.reduce(movies, function (memo, item) {
+    runtime = item['runtime'];
+    if (memo === true) { return memo; }
+    if (runtime < timeLimit) {
+      memo = true;
+      return memo;
+    }
+    return memo;
+  }, false);
 };
